@@ -73,7 +73,6 @@ export class CadastroVeiculoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.topbarService.setBackRoute('produto/listagem');
     this.idVeiculo = this.data.id;
 
     if (this.idVeiculo) {
