@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
           monthYearA11yLabel: 'MMMM YYYY',
         },
       }, 
-      {useUtc: true, strict: true},
+      {useUtc: false, strict: true},
     ),
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
   ]
