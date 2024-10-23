@@ -1,0 +1,76 @@
+<div class="hidden sm:flex justify-end mb-2">
+  <button mat-raised-button class="px-3" (click)="cadastrar()">
+    <mat-icon>add</mat-icon>
+    Cadastrar
+  </button>
+</div>
+
+<div class="flex sm:hidden">
+  <button class="fab_cadastrar_mb" mat-fab (click)="cadastrar()"
+    aria-label="Example icon button with a delete icon">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="flex mb-2">
+  <mat-expansion-panel class="w-full" #expansionPanel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Filtros <mat-icon>filter_alt</mat-icon></mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-filtro-veiculo (filtrarEvt)="consultarFiltrado()"></app-filtro-veiculo>
+  </mat-expansion-panel>
+</div>
+
+<div class="flex container-tabela mat-elevation-z3">
+  <table mat-table [dataSource]="veiculos" matSort (matSortChange)="ordenarPor($event)">
+
+    <ng-container matColumnDef="Placa">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por nome"> Placa </th>
+      <td mat-cell *matCellDef="let element"> {{element.placa}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Modelo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por modelo"> Modelo </th>
+      <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Ano">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por ano"> Ano </th>
+      <td mat-cell *matCellDef="let element"> {{element.ano}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por cor"> Cor </th>
+      <td mat-cell *matCellDef="let element"> {{element.cor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes" sticky>
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editar(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="deletar(element)">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="hover:bg-gray-200"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:bg-gray-200"></tr>
+  </table>
+</div>
+
+<div class="flex mat-elevation-z3 mb-2">
+  <mat-paginator class="w-full" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="filtroService.filtro.tamanhoPagina"
+    [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="(filtroService.filtro.pagina ?? 1) - 1" aria-label="Select page">
+  </mat-paginator>
+</div>

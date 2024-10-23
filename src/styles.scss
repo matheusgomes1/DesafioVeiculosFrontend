@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@include mat.core();
+
+$my-theme: mat.define-theme((
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+      ),
+      typography: (
+        brand-family: 'Comic Sans',
+        bold-weight: 900
+      ),
+      density: (scale: -1)));
+
+@mixin theme($my-theme) {
+  mat-toolbar {
+    background: mat.get-theme-color($my-theme, primary-container) !important;
+  }
+
+  .dialog-title {
+    border-bottom: mat.get-theme-color($my-theme, primary-container) solid 2px;
+  }
+
+  .secondy-row-color {
+    min-height: 40px !important;
+    width: 100% !important;
+    background-color: mat.get-theme-color($my-theme, primary, 95) !important;
+  }  
+}
+
+html,
+body {
+  @include mat.all-component-themes($my-theme);
+  @include theme($my-theme);
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  --mat-app-background-color: #edecec70;
+}
+
+@import "../src/app/core/styles/mat-paginador-custom";
+@import "../src/app/core/styles/snack-bar-custom";
+@import "../src/app/core/styles/mat-form-field-custom";

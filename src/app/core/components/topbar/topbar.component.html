@@ -1,0 +1,17 @@
+<mat-progress-bar class="progress-bar-custom" mode="query" *ngIf="loadingController.loadingFlag() > 0"></mat-progress-bar>
+<mat-toolbar>
+  <div class="flex grow justify-center">
+    App Desafio Veículos {{envName}}
+  </div>
+</mat-toolbar>
+<div class="flex secondy-row-color">
+  <button mat-icon-button class="ms-3" *ngIf="!!topbarService.backRoute()" (click)="topbarService.backButtonNavigate()" aria-label="Botão para retornar para a tela anterior">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <mat-chip-set class="ms-4" aria-label="Fish selection">
+    @for (breadcrumb of topbarService.breadcrumbs(); track $index) {
+      <mat-chip (click)="topbarService.redirecionarRota(breadcrumb.route)" [highlighted]="$index == (topbarService.breadcrumbs().length - 1)">{{breadcrumb.label}}</mat-chip>
+    }
+  </mat-chip-set>
+</div>

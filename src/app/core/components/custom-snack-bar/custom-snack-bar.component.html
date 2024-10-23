@@ -1,0 +1,10 @@
+<div class="header-container">
+  <mat-icon *ngIf="data.icon">{{data.icon}}</mat-icon>
+  <h4 class="snack-bar-title">{{ data.title }}</h4>
+  <button mat-icon-button (click)="closeSnackbar()">
+    <mat-icon>close</mat-icon> <!-- Ícone de fechar -->
+  </button>
+</div>
+<hr>
+<div class="body-container" [innerHTML]="data.message">
+</div>

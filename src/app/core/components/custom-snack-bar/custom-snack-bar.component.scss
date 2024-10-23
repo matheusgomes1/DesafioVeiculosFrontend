@@ -1,0 +1,23 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 30px;
+  justify-content: space-between;
+
+  > mat-icon {
+    margin: 6px;
+  }
+}
+
+.body-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  margin: 5px 0 8px 0;
+}
+
+.snack-bar-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}

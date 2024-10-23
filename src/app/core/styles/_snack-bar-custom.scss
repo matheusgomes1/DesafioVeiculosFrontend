@@ -1,0 +1,64 @@
+.mdc-snackbar__label {
+  padding: 1px 0px 0px 6px !important;
+}
+
+.error-snackbar {
+  background-color: #ffcccc; /* Vermelho apastelado */
+  color: #000; /* Texto preto para maior legibilidade */
+
+  hr {
+    color: #8f0303;
+    border-top: 2px solid;
+  }
+
+  mat-icon {
+    color: #8f0303;
+  }
+}
+
+.warning-snackbar {
+  background-color: #fff2cc; /* Amarelo apastelado */
+  color: #000; /* Texto preto para maior legibilidade */
+
+  hr {
+    color: #e7b803;
+    border-top: 2px solid;
+  }
+
+  mat-icon {
+    color: #e7b803;
+  }
+}
+
+.info-snackbar {
+  background-color: #cce5ff; /* Azul apastelado */
+  color: #000; /* Texto preto para maior legibilidade */
+
+  hr {
+    color: #1e00ff;
+    border-top: 2px solid;
+  }
+
+  mat-icon {
+    color: #1e00ff;
+  }
+}
+
+.success-snackbar {
+  background-color: #aaf5e2; /* Azul apastelado */
+  color: #000; /* Texto preto para maior legibilidade */
+
+  hr {
+    color: #01853c;
+    border-top: 2px solid;
+  }
+
+  mat-icon {
+    color: #01853c;
+  }
+}
+
+body {
+  --mdc-snackbar-container-color: none; /* Resets to default */
+  --mdc-snackbar-supporting-text-color: none;
+}

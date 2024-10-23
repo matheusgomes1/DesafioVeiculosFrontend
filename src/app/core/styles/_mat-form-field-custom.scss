@@ -1,0 +1,10 @@
+mat-form-field {
+  .mdc-notched-outline__notch {
+    border-right: 0px !important;
+  }
+}
+
+body {
+  --mat-form-field-container-vertical-padding: 10px;
+  --mat-form-field-container-height: 44px;
+}

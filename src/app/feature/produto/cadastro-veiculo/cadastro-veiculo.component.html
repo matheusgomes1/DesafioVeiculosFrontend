@@ -1,0 +1,101 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    @if (form) {
+      <form [formGroup]="form" (ngSubmit)="salvar()">
+        <div class="container mx-auto text-center">
+          <div class="flex justify-start">
+            <h5>Veículo</h5>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Placa</mat-label>
+              <input matInput placeholder="Placa" formControlName="placa">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Modelo</mat-label>
+              <input matInput placeholder="Modelo" formControlName="modelo" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Ano</mat-label>
+              <input matInput type="number" placeholder="Ano" formControlName="ano" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Cor</mat-label>
+              <input matInput placeholder="Cor" formControlName="cor" />
+            </mat-form-field>
+          
+            <mat-form-field>
+              <mat-label>Tipo veículo</mat-label>
+              <mat-select formControlName="tipoVeiculo" (selectionChange)="mostrarOcultarCampos()">
+                @for (tipo of tiposVeiculo; track tipo) {
+                  <mat-option [value]="tipo.value" [disabled]="idVeiculo != 0">
+                    {{tipo.label}}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            @if (showCapacidadePassageiro) {
+              <mat-form-field appearance="outline">
+                <mat-label>Capacidade Passageiro</mat-label>
+                <input matInput type="number" placeholder="Capacidade Passageiro" formControlName="capacidadePassageiro" />
+              </mat-form-field>  
+            }
+            
+            @if (showCapacidadeCarga) {
+              <mat-form-field appearance="outline">
+                <mat-label>Capacidade Carga</mat-label>
+                <input matInput type="number" placeholder="Capacidade Carga" formControlName="capacidadeCarga" />
+              </mat-form-field>
+            }
+          </div>
+
+          <div class="flex justify-start">
+            <h5>Revisões</h5>
+          </div>
+          <div class="flex gap-1">
+            <mat-form-field appearance="outline">
+              <mat-label>Km</mat-label>
+              <input matInput type="number" placeholder="Km" formControlName="km" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Data</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="data">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Valor da Revisão</mat-label>
+              <input matInput type="number" placeholder="Valor da Revisão" formControlName="valorRevisao" />
+            </mat-form-field>
+            <button class="mt-1" type="button" mat-icon-button (click)="adicionarRevisao()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          @for (revisao of veiculo?.revisoes; track $index) {
+            <div class="flex gap-1 items-center">
+              <mat-chip>{{revisao.km}} km</mat-chip>
+              <mat-chip>{{revisao.data | date:'dd/MM/yyyy'}}</mat-chip>
+              <mat-chip>R$ {{revisao.valorDaRevisao}}</mat-chip>
+              <button type="button" mat-icon-button (click)="removerRevisao($index)">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div>
+          }
+        </div>
+
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close>Cancelar</button>
+          <button mat-raised-button type="submit" class="px-3" [disabled]="!form.valid">
+            <mat-icon>add</mat-icon>
+            Salvar
+          </button>
+        </mat-dialog-actions>
+      </form>
+    }
+  </mat-card-content>
+</mat-card>
